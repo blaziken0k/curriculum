@@ -1,0 +1,64 @@
+.clearfix::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+/*全体を中央揃え*/
+.wrapper {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+/*ヘッダーここから*/
+
+.header-yilogo {
+	background-color: #add8e6;
+	width: 200px;
+	height: 120px;
+	float: left;
+}
+/*画像の調整*/
+.yilogo-img {
+	width: 200px;
+}
+
+.header-hello {
+	background-color: #87ceeb;
+	width: 800px;
+	height: 60px;
+	float: left;
+}
+.header-day {
+	background-color: #00ffff;
+	width: 800px;
+	height: 60px;
+	float: left;
+}
+/*ヘッダー内文章を中央左揃えに*/
+.header-text {
+	text-align: right;
+	padding: 20px 0px 20px;
+}
+
+/*ヘッダーここまで*/
+
+/*メインコンテンツを中央揃え*/
+table {
+	margin: 0 auto;
+	padding: 10px;
+}
+
+/*テーブルの装飾*/
+table th {
+	background: #87ceeb;
+}
+table td {
+	background: #e0ffff;
+}
+
+/*フッター*/
+.footer {
+	background-color: #00ced1;
+	height: 50px;
+}
