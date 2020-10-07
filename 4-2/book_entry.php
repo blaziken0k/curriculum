@@ -16,11 +16,6 @@ if (isset($_POST["entry"])) {
 	if (empty($_POST["date"])) {
 		echo "発売日が未入力です。" . "<br>";
 	}
-
-	// 追記部分
-	elseif (!empty($_POST["date"]) == false) {
-		echo "発売日のフォーマットが異なります。";
-	}
 	// 在庫数の入力チェック
 	if (empty($_POST["stock"])) {
 		echo "在庫が未入力です。" . "<br>";

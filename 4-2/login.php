@@ -1,77 +1,72 @@
 <?php
-require_once('db_connect.php');
+require_once("db_connect.php");
+
 //セッション開始
 session_start();
-//$_POSTが空ではない場合
-//つまり、ログインボタンが押された場合のみ、下記の処理を実行する
+
 if (!empty($_POST)) {
-    // ログイン名が入力されていない場合の処理
-    if (empty($_POST['name'])) {
-        echo "名前が未入力です。";
-    }
-    // パスワードが入力されていない場合の処理
-    if (empty($_POST['pass'])) {
-        echo "パスワードが未入力です。";
-    }
+	//ログイン名が未入力
+	if (empty($_POST["name"])) {
+		echo "名前が未入力です。" . "<br>";
+	}
+	//パスワードが未入力
+	if (empty($_POST["password"])) {
+		echo "パスワードが未入力です。" . "<br>";
+	}
+	//ログイン名、パスワード共に入力OK
+	if (!empty($_POST["name"]) && !empty($_POST["password"])) {
+		$name = htmlspecialchars($_POST["name"], ENT_QUOTES);
+		$password = htmlspecialchars($_POST["password"], ENT_QUOTES);
+		$pdo = db_connect();
 
-    // 両方共入力されている場合
-    if (!empty($_POST['name']) && !empty($_POST['pass'])) {
-        //ログイン名とパスワードのエスケープ処理
-        $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
-        $pass = htmlspecialchars($_POST['pass'], ENT_QUOTES);
-        // ログイン処理開始
-        $pdo = db_connect();
-        try {
-            //データベースアクセスの処理文章。ログイン名があるか判定
-            $sql = 'SELECT * FROM users WHERE name = :name';
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':name', $name);
-            $stmt->execute();
-        } catch (PDOException $e) {
-            echo 'Error: ' . $e->getMessage();
-            die();
-        }
+		try {
+			//DBにログイン名があるかどうか確認
+			$sql = "SELECT * FROM users WHERE name = :name";
+			$stmt = $pdo->prepare($sql);
+			$stmt->bindParam(":name", $name);
+			$stmt->execute();
+		} catch (PDOException $e) {
+			echo "Error: " . $e->getMessage();
+			die();
+		}
 
-        // 結果が1行取得できたら
-        if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            // ハッシュ化されたパスワードを判定する定形関数のpassword_verify
-            // 入力された値と引っ張ってきた値が同じか判定しています。
-            if (password_verify($pass, $row['password'])) {
-                // セッションに値を保存
-                $_SESSION['user_id'] = $row['id'];
-                $_SESSION['user_name'] = $row['name'];
-                // main.phpにリダイレクト
-                header('Location: main.php');
-                exit;
-            } else {
-                // パスワードが違ってた時の処理
-                echo 'パスワードに誤りがあります。';
-            }
-        } else {
-            //ログイン名がなかった時の処理
-            echo 'ユーザー名かパスワードに誤りがあります。';
-        }
-    }
+		//結果が１行取得できたら
+		if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			//
+			//
+			if (password_verify($password, $row["password"])) {
+				//
+				$_SESSION["id"] = $row["id"];
+				$_SESSION["name"] = $row["name"];
+				//
+				header("Location: index.php");
+				exit;
+			} else {
+				//
+				echo "パスワードに誤りがあります。";
+			}
+		} else {
+			//
+			echo "ユーザー名かパスワードに誤りがあります";
+		}
+	}
 }
 ?>
-<!doctype html>
+<!DOCTYPE HTML>
 <html lang="ja">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>ログインページ</title>
-	</head>
-	<body>
-		<h2>ログイン画面</h2>
-		<form method="post" action="">
-			名前：<input type="text" name="name" size="15"><br><br>
-			パスワード：<input type="text" name="pass" size="15"><br><br>
-			<input type="submit" value="ログイン画面">
-		</form>
-	</body>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>ログイン</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="wrapper clearfix">
+	<!-- 新規登録ページへ -->
+	<a href="signUp.php"><input type="button" name="signUp" value="新規ユーザー登録" class="signUp-button"></a>
+	<!-- 入力欄 -->
+	<form action="" method="post">
+		<input type="text" name="name" placeholder="ユーザー名" class="text-box"><br>
+		<input type="password" name="password" placeholder="パスワード" class="text-box"><br>
+		<input type="submit" name="login" value="ログイン" class="login-button">
+	</form>
+</body>
 </html>
-
-
-
-
-
-

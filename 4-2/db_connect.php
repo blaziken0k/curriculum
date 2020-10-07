@@ -1,5 +1,5 @@
 <?php
-define('DB_DATABASE', 'YIGroupBlog');
+define('DB_DATABASE', 'checktest_ch4');
 define('DB_USERNANE', 'root');
 define('DB_PASSWORD', 'root');
 define('PDO_DSN', 'mysql:host=localhost;charset=utf8;dbname=' . DB_DATABASE);
