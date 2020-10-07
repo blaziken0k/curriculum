@@ -1,0 +1,114 @@
+.clearfix:after {
+	content "";
+	display: block;
+	clear: both;
+}
+
+/*ページ全体の表示設定*/
+.wrapper {
+	width: 700px;
+	margin: 0 auto;
+	padding: 30px 0;
+}
+
+/*入力ボックスのデザイン*/
+.text-box {
+	font-size: 10pt;
+	padding: 6px 100px 8px 5px;
+	margin: 5px 0 5px 0;
+}
+.stock-box {
+	padding: 6px 20px;
+	margin: 6px 0 0 0;
+}
+
+/*テーブルの装飾*/
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: solid 1px;
+	border-color: silver;
+}
+th {
+	font-size: 10pt;
+	border: solid 1px;
+	border-color: silver;
+	background-color: gainsboro;
+	padding: 15px;
+}
+td {
+	font-size: 10pt;
+	border: solid 1px;
+	border-color: silver;
+	padding: 10px 50px 10px 50px;
+}
+
+
+/*ボタンのデザイン*/
+/*ログインボタン*/
+.login-button {
+	color: white;
+	background: #006aff;
+	border-radius: 5px;
+	border: none;
+	padding: 7px 40px;
+	margin: 6px 0 0 0;
+}
+/*ログアウトボタン*/
+.logOut-button {
+	font-size: 11pt;
+	color: white;
+	background: gray;
+	border-radius: 5px;
+	border: none;
+	margin: 5px 0 20px 15px;
+	padding: 7px 17px;
+}
+/*新規ユーザ登録画面へ移行するボタン*/
+.signUp-button {
+	font-size: 8pt;
+	color: white;
+	background: #1f9999;
+	border-radius: 5px;
+	border: none;
+	margin: 5px 0 5px 130px;
+	padding: 7px 10px;
+}
+
+/*新規登録画面の送信ボタン*/
+.signUp-button2 {
+	color: white;
+	background: #006aff;
+	border-radius: 5px;
+	border: none;
+	margin: 5px 0 20px;
+	padding: 7px 30px;
+}
+/*本の登録画面へ移行するボタン*/
+.book-entry-button {
+	font-size: 11pt;
+	color: white;
+	background: #006aff;
+	border-radius: 5px;
+	border: none;
+	margin: 5px 0 10px 0;
+	padding: 7px 17px;
+}
+/*本の登録ボタン*/
+.book-entry-button2 {
+	color: white;
+	background: #006aff;
+	border-radius: 5px;
+	border: none;
+	margin: 15px 0 0 0;
+	padding: 7px 50px;
+}
+/*本の削除ボタン*/
+.delete-button {
+	font-size: 11pt;
+	color: white;
+	background: red;
+	border-radius: 5px;
+	border: none;
+	padding: 7px 15px;
+}
